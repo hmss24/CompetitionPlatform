@@ -28,13 +28,12 @@ export default function LoginPage() {
       || password.search(/[A-Z]/) == -1
       || password.search(/[a-z]/) == -1
       || password.search(/[0-9]/) == -1) {
-      message.error('请输入合法的密码');
+      message.error('登录失败，密码无效');
       return;
     }
 
     try {
       const response = await userLogin({ ll_username: username, ll_password: password });
-      console.log(response);
       if(response.status != 200) message.error('网络错误');
       else if(response.data.code != 200) message.error(response.data.msg as string);
       else {
@@ -67,39 +66,6 @@ export default function LoginPage() {
 
   const passwordRule = [
     { required: true, message: '请输入密码' },
-    {
-      validator(_: any, password: string) {
-        if (password.length < 8)
-          return Promise.reject(new Error('密码不得少于8位'));
-        if (password.length > 200)
-          return Promise.reject(new Error('密码不得超过200位'));
-        return Promise.resolve();
-      }
-    }, {
-      validator(_: any, password: string) {
-        if (/^[ -~]+$/.test(password) == false)
-          return Promise.reject(new Error('密码不得含有大小写字母、数字、英文符号、空格以外的字符'));
-        return Promise.resolve();
-      }
-    }, {
-      validator(_: any, password: string) {
-        if (password.search(/[A-Z]/) == -1)
-          return Promise.reject(new Error('密码需要至少含有一个大写字母'));
-        return Promise.resolve();
-      }
-    }, {
-      validator(_: any, password: string) {
-        if (password.search(/[a-z]/) == -1)
-          return Promise.reject(new Error('密码需要至少含有一个小写字母'));
-        return Promise.resolve();
-      }
-    }, {
-      validator(_: any, password: string) {
-        if (password.search(/[0-9]/) == -1)
-          return Promise.reject(new Error('密码需要至少含有一个数字'));
-        return Promise.resolve();
-      }
-    }
   ];
 
   return <Layout className={styles.layout}>

@@ -31,7 +31,6 @@ export function quitLogin() {
 // 确认登录，保存登录信息
 export function saveLogin(response: AxiosResponse) {
   const header = response.headers;
-  console.log(header);
   if (header instanceof AxiosHeaders
     && header.has('username')
     && header.has('token')
