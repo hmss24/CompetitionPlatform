@@ -1,8 +1,8 @@
 'use client'
-import { Button, Col, Form, Grid, Input, Layout, Row, Space, message } from "antd";
+import { Button, Form, Input, Layout, Space, message } from "antd";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
-import { saveLogin, userLogin, userSignup } from "../api/user";
+import { saveLogin, userLogin, userSignup } from "@/api/user";
 
 interface SignupInterface {
   username: string,
@@ -20,17 +20,17 @@ export default function LoginPage() {
     const password: string = table.password ?? '';
 
     if (username.length < 1
-      || username.length > 200
+      || username.length > 50
       || username.search(/[\p{C}\p{Z}\p{M}\p{P}\p{S}]/u) != -1) {
       message.error('请输入合法的账号名');
       return;
     }
-    if (nickname.length < 1 || nickname.length > 200) {
+    if (nickname.length < 1 || nickname.length > 50) {
       message.error('请输入合法的昵称');
       return;
     }
     if (password.length < 8
-      || password.length > 100
+      || password.length > 50
       || /^[ -~]+$/.test(password) == false
       || password.search(/[A-Z]/) == -1
       || password.search(/[a-z]/) == -1

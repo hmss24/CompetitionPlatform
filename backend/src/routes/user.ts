@@ -1,4 +1,4 @@
-import express, { response } from 'express'
+import express from 'express'
 import tips from '@/utils/tips'
 import UserModel from '@/models/UserModel'
 import errorcode from '@/utils/errorcode'
@@ -20,12 +20,12 @@ router.post('/signup', async (request, response) => {
     return response.json({ code: errorcode.ARGUMENTS_LEAK, msg: tips.ARGUMENTS_LEAK });
   }
   if (ll_username.length < 1
-    || ll_username.length > 200
+    || ll_username.length > 50
     || ll_username.search(/[\p{C}\p{Z}\p{M}\p{P}\p{S}]/u) != -1) {
     return response.json({ code: errorcode.USER_REGISTER_FAILED, msg: tips.REGISTER_FAILED_USERNAME_ILLEGAL });
   }
   if (ll_password.length < 8
-    || ll_password.length > 100
+    || ll_password.length > 50
     || /^[ -~]+$/.test(ll_password) == false
     || ll_password.search(/[A-Z]/) == -1
     || ll_password.search(/[a-z]/) == -1
@@ -33,7 +33,7 @@ router.post('/signup', async (request, response) => {
   ) {
     return response.json({ code: errorcode.USER_REGISTER_FAILED, msg: tips.REGISTER_FAILED_PASSWORD_ILLEGAL });
   }
-  if (ll_nickname.length < 1 || ll_nickname.length > 200) {
+  if (ll_nickname.length < 1 || ll_nickname.length > 50) {
     return response.json({ code: errorcode.USER_REGISTER_FAILED, msg: tips.REGISTER_FAILED_NICKNAME_ILLEGAL });
   }
 
@@ -120,7 +120,7 @@ router.post("/passwd", async (request, response) => {
     return response.json({ code: errorcode.ARGUMENTS_LEAK, msg: tips.ARGUMENTS_LEAK });
   }
   if (ll_password.length < 8
-    || ll_password.length > 100
+    || ll_password.length > 50
     || /^[ -~]+$/.test(ll_password) == false
     || ll_password.search(/[A-Z]/) == -1
     || ll_password.search(/[a-z]/) == -1

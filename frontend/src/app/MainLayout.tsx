@@ -4,14 +4,20 @@ import { Button, Layout, Menu, MenuProps, Space } from "antd";
 import { Footer, Header } from "antd/es/layout/layout";
 import { usePathname, useRouter } from "next/navigation";
 import React, { ReactNode, useEffect, useState } from "react";
-import { isLogin, quitLogin } from "./api/user";
+import { isLogin, quitLogin } from "@/api/user";
 import { Dropdown } from 'antd';
 
 export const MENUS = [
-  { label: '首页', key: 'homepage' },
+  { label: '首页', key: '' },
   { label: '数据', key: 'data' },
   { label: '排行榜', key: 'ranking' },
 ];
+
+export const ROUTES: Map<string, string> = new Map([
+  ['', '/' ],
+  ['data', '/data' ],
+  ['ranking', '/ranking' ],
+]);
 
 
 // 绝大部分网页的主框架
@@ -24,12 +30,6 @@ export function MainLayout({ children }: { children: ReactNode }) {
   useEffect(() => {
     setNickname(localStorage.getItem('nickname'));
   }, [nickname]);
-
-  useEffect(() => {
-    if (selectedKey == '') {
-      router.push('/homepage');
-    }
-  }, [router, selectedKey]);
 
   const DROPITEMS : MenuProps['items'] = [
     {
@@ -56,7 +56,7 @@ export function MainLayout({ children }: { children: ReactNode }) {
         mode='horizontal'
         selectedKeys={[selectedKey]}
         items={MENUS}
-        onClick={info => router.push(info.key)}
+        onClick={info => router.push(ROUTES.get(info.key) ?? '/')}
       />
       <Space align='center' style={{ marginLeft: 'auto', color: 'white' }}>
         <Dropdown menu={nickname?{items:DROPITEMS}:{items:DROPITEMS_UNLOGIN}}>

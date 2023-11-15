@@ -37,7 +37,7 @@ app.use(cors({
 const WHITE_LIST = [
   '/user/login',
   '/user/signup',
-  '/user/logout',
+  //'/user/logout',
   '/user/delete',
 ];
 

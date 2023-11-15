@@ -1,9 +1,15 @@
-import Image from 'next/image'
-import Layout from 'antd/es/layout/layout'
-import { MainLayout } from '../MainLayout'
+'use client'
+
+import { useRouter } from "next/navigation";
+import { MainLayout } from "@/MainLayout";
+import { Table } from "antd";
 
 export default function Home() {
+  const router = useRouter();
+
   return <MainLayout>
-    This is a data page.
+    <Table>
+      
+    </Table>
   </MainLayout>
 }

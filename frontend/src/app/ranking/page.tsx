@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Layout from 'antd/es/layout/layout'
-import { MainLayout } from '../MainLayout'
+import { MainLayout } from '@/MainLayout'
 
 export default function Home() {
   return <MainLayout>

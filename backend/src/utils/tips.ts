@@ -27,4 +27,11 @@ export default {
   PASSWD_SUCCESS: '修改密码成功',
   PASSWD_FAILED_PASSWORD_ILLEGAL: '修改密码失败，密码非法',
   PASSWD_FAILED_UNKNOWN: '修改密码失败，未知原因',
+
+  DATA_CATEGORY_UNKNOWN: '数据类别未知',
+  DATA_BAD_FORMAT: '数据格式错误',
+  DATA_USER_NO_PERMISSION: '用户无权操作数据',
+  DATA_USER_NO_EXIST: '用户不存在',
+  DATA_FAILED_UNKNOWN: '数据操作失败，未知原因',
+  DATA_ADD_SUCCESS: '数据添加成功',
 };
